@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # python lib path
-# export PYTHONPATH=/home/Peterou/Desktop/usr/code/caffe2/pytorch/build/libinstall/usr/local/lib/python2.7/site-packages
+# export PYTHONPATH=/home/Peterou/Desktop/usr/code/caffe2/pytorch/build/libinstall/usr/local:/home/Peterou/Desktop/usr/code/caffe2/pytorch/build/libinstall/usr/local/lib/python2.7/site-packages:/home/Peterou/Desktop/usr/code/caffe2/detectron
 # export LD_LIBRARY_PATH=/home/Peterou/Desktop/usr/code/caffe2/pytorch/build/libinstall/usr/local/lib:/usr/local/cudnn_v6/lib64:/usr/local/cuda-8.0/lib64
 
 
@@ -38,7 +38,8 @@ export LD_LIBRARY_PATH=/usr/local/cudnn_v6/lib64:/usr/local/cuda-8.0/lib64:$LD_L
 cmake -DCUDA_TOOLKIT_ROOT_DIR="/usr/local/cuda-8.0" \
       -DCMAKE_PREFIX_PATH="/usr/local/cudnn_v6" \
       -DPYTHON_LIBRARY=$(python2 -c "from distutils import sysconfig; print(sysconfig.get_python_lib())") \
-        -DPYTHON_INCLUDE_DIR=$(python2 -c "from distutils import sysconfig; print(sysconfig.get_python_inc())") \
+      -DPYTHON_INCLUDE_DIR=$(python2 -c "from distutils import sysconfig; print(sysconfig.get_python_inc())") \
+      -DUSE_NATIVE_ARCH=ON \
       -DCMAKE_BUILD_TYPE="$buildType" ..
 
 libinstall="libinstall"
